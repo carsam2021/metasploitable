@@ -31,4 +31,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: metasploitable2-qcow2
-        path: qcow2/metasploitable2.qcow2
+        path: |
+           qcow2/metasploitable2.qcow2
+           metasploitable-linux-2.0.0.zip
