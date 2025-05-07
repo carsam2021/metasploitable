@@ -1,0 +1,33 @@
+name: Convert Metasploitable2 to QCOW2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install dependencies (qemu-utils, unzip, wget)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qemu-utils unzip wget
+
+    - name: Download Metasploitable2 ZIP
+      run: |
+        wget https://sourceforge.net/projects/metasploitable/files/Metasploitable2/Metasploitable2-Linux.zip/download -O Metasploitable2.zip
+
+    - name: Unzip Metasploitable2
+      run: unzip Metasploitable2.zip
+
+    - name: Convert VMDK to QCOW2
+      run: |
+        mkdir qcow2
+        VMDK_FILE=$(find . -name "*.vmdk" | head -n 1)
+        qemu-img convert -f vmdk -O qcow2 "$VMDK_FILE" qcow2/metasploitable2.qcow2
+
+    - name: Upload QCOW2 as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: metasploitable2-qcow2
+        path: qcow2/metasploitable2.qcow2
