@@ -16,9 +16,8 @@ jobs:
     - name: Download Metasploitable2 ZIP
       run: |
         wget https://sourceforge.net/projects/metasploitable/files/Metasploitable2/Metasploitable2-Linux.zip/download -O Metasploitable2.zip
-
-    - name: Unzip Metasploitable2
-      run: unzip Metasploitable2.zip
+        wget http://downloads.metasploit.com/data/metasploitable/metasploitable-linux-2.0.0.zip
+unzip metasploitable-linux-2.0.0.zip && cd Metasploitable2-Linux
 
     - name: Convert VMDK to QCOW2
       run: |
