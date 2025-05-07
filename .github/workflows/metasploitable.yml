@@ -19,7 +19,7 @@ jobs:
         wget http://downloads.metasploit.com/data/metasploitable/metasploitable-linux-2.0.0.zip
         file metasploitable-linux-2.0.0.zip 
         unzip metasploitable-linux-2.0.0.zip 
-        d Metasploitable2-Linux
+        cd Metasploitable2-Linux
 
     - name: Convert VMDK to QCOW2
       run: |
